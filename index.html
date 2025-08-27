@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cek Halaman</title>
+    <style>
+      body { font-family: ui-sans-serif, Arial, sans-serif; margin: 0; padding: 24px; background:#0f172a; color:#e5e7eb; }
+      .wrap { max-width: 720px; margin: 0 auto; }
+      .status { padding:16px; border-radius:10px; margin-bottom:12px; }
+      .ok { background:#052e16; color:#bbf7d0; }
+      .warn { background:#3f1d0f; color:#fed7aa; }
+      code { background:#111827; color:#f9fafb; padding:2px 6px; border-radius:6px; }
+    </style>
+    <noscript>
+      <div class="wrap">
+        <div class="status warn">⚠ JavaScript nonaktif — aktifkan JavaScript agar fitur berjalan.</div>
+      </div>
+    </noscript>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Status Halaman</h1>
+      <div id="ready" class="status" style="display:none"></div>
+      <p>Jika melihat pesan “halaman siap” di atas, berarti halaman telah bekerja.</p>
+      <p>Uji cepat: klik tombol ini untuk memastikan event berjalan.</p>
+      <button id="btn">Uji interaksi</button>
+      <p id="log"></p>
+    </div>
+
+    <script>
+      // Tampilkan status saat DOM siap
+      function setReady() {
+        const el = document.getElementById('ready');
+        el.className = 'status ok';
+        el.textContent = '✅ Halaman siap dan JavaScript berjalan — ' + new Date().toLocaleTimeString('id-ID');
+        el.style.display = 'block';
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setReady);
+      } else {
+        setReady();
+      }
+
+      // Uji interaksi
+      document.getElementById('btn').addEventListener('click', () => {
+        const log = document.getElementById('log');
+        log.textContent = 'Tombol diklik pada ' + new Date().toLocaleString('id-ID');
+      });
+    </script>
+  </body>
+</html>
